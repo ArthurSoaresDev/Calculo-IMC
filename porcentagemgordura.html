@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <style>
+        button{
+            border-radius: 5px;
+            cursor: pointer;
+            
+        }
+       
+        body{
+            margin: 0;
+        }
+        .cab{
+            background-color: rgb(238, 173, 75);
+            margin: 0%;
+            display: flex;
+            justify-content: space-around;
+            gap: 30px;
+            padding: 30px;
+        }
+
+        /* menu responsivo */
+        .menu-icon {
+         display: none;
+          /* escondido por padrão */
+           font-size: 28px;
+          cursor: pointer;
+        }
+    .conteudo{
+        display:flex;
+        flex-direction: column;
+         align-items: center;
+        text-align: center;
+
+    }
+        .IMC{
+            margin-top: 50px;
+            margin-left: 30%;
+            justify-content: center;
+            
+        }
+         .IMC input[type="text"] {
+    width: 50%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    box-sizing: border-box;
+    font-size: 16px;
+}
+           .IMC input[type="submit"] {
+            width: 50%;
+            margin-left: 60px;
+            padding: 12px;
+           background-color: #4CAF50;
+           color: white;
+           border: none;
+            border-radius: 6px;
+            font-size: 16px;
+           cursor: pointer;
+           transition: background-color 0.3s ease;
+        }
+        .footer{
+            background-color: black;
+            color:azure;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+        }
+        #resultado {
+    margin-top: 20px;
+    font-size: 18px;
+    color: #333;
+    text-align: center;
+}
+        @media (max-width: 768px) {
+            h2{
+                
+            }
+            .cab{
+                justify-content: space-around;
+            }
+            .botoes{
+                display: none;
+                gap: 15px;
+            }
+            .menu-icon{
+                display: block;
+            }
+            .IMC input[type="text"] {
+                width: 70%;
+            }
+            .IMC input[type="submit"] {
+                width: 70%;
+            }
+        }
+    </style>
+<div class="cab">
+
+    <div class="logo">
+      <img src="logoplanta.png" alt="logo" width="100" height="100" >
+    </div>
+
+    <div class="botoes">
+      <a onclick="irParaDiv()"><button>Produtos</button></a>
+      <a onclick="irParaDiv2()"><button>Portfolio</button></a>
+      <a href="estoque.html"><button>Sobre</button></a>
+    </div>
+
+
+
+    <div class="menu-icon">
+      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-list"
+        viewBox="0 0 16 16">
+        <path fill-rule="evenodd"
+          d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5" />
+      </svg>
+    </div>
+
+    
+  </div>
+
+  <div class="conteudo">
+    <h2> Índice de Massa Corporal (IMC)</h2>
+    <p> O IMC serve para avaliar se uma pessoa está<br> com um peso adequado para a sua altura,<br> classificando-a como abaixo do peso,<br> peso normal, com sobrepeso ou obesa.<br> É um indicador que ajuda a identificar<br> possíveis problemas de saúde relacionados<br> ao peso, como risco aumentado de doenças<br> cardiovasculares e diabetes. 
+    </p>
+
+  </div>
+
+
+    <div class="IMC">
+
+    <label for="altura">Sua altura</label>
+    <input type="text" id="meuInput"> <br><br>
+    <label for="Peso">Seu Peso</label>
+    <input type="text" id="Peso"> <br><br>
+    <input type="submit" value="Calcular IMC" onclick="porcentagem()">
+   <p id="resultado"></p>
+
+    </div>
+
+    <footer class="footer">
+
+        <p>Grupo@<br>Colaboração CIEE<br>Nome dos Alunos<br>Arthur</p>
+    </footer>
+
+    <script>
+        function porcentagem(){
+        var altura = parseFloat(document.getElementById("meuInput").value);
+        var peso = parseFloat(document.getElementById("Peso").value);
+         
+        if (!altura || !peso){
+            document.getElementById("resultado").innerText = "Por favor, insira valores válidos!";
+            return;
+        }
+            var imc = peso / (altura**2);
+            if (imc < 18.5) {
+    document.getElementById("resultado").innerText = "Seu IMC é de: " + imc.toFixed(2) + "%, considerado abaixo de peso";
+} else if (imc < 25) {
+    document.getElementById("resultado").innerText = "Seu IMC é de : " + imc.toFixed(2) + "%, considerado um peso normal";
+} else if (imc < 30) {
+    document.getElementById("resultado").innerText = "Seu IMC é de: " + imc.toFixed(2) + "%, considerado um sobrepeso";
+} else {
+    document.getElementById("resultado").innerText = "Seu IMC é: " + imc.toFixed(2) + "%, considerado obesidade";
+}
+        }
+        
+ 
+        //-------------
+          const menuIcon = document.querySelector('.menu-icon');
+    const navLinks = document.querySelector('.botoes');
+
+    menuIcon.addEventListener('click', () => {
+      navLinks.style.display = navLinks.style.display === 'flex' ? 'none' : 'flex';
+      navLinks.style.flexDirection = 'column';
+    });
+
+    </script>
+</body>
+</html>
